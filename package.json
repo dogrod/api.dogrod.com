@@ -1,0 +1,24 @@
+{
+  "name": "blog-backstage",
+  "version": "0.1.0",
+  "description": "Backstage of my blog system.",
+  "main": "dist/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dogrod/blog-backstage.git"
+  },
+  "keywords": [
+    "Node.js",
+    "Typescript",
+    "MongoDB"
+  ],
+  "author": "dogrdo <rodrickjue@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dogrod/blog-backstage/issues"
+  },
+  "homepage": "https://github.com/dogrod/blog-backstage#readme"
+}
