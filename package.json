@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build:live",
     "build-ts": "tsc",
-    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./server/index.ts",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/server.ts",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

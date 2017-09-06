@@ -20,7 +20,7 @@ const app = express()
  * Express configuration.
  */
 app.set('port', process.env.PORT || 3000)
-app.set('views', path.join(process.cwd(), 'client/views'))
+app.set('views', path.join(process.cwd(), 'views'))
 app.set('view engine', 'pug')
 
 /**
