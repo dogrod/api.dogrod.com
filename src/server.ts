@@ -1,6 +1,13 @@
+import * as connectMongo from 'connect-mongo'
 import * as dotenv from 'dotenv'
 import * as express from 'express'
+import * as flash from 'express-flash'
+import * as session from 'express-session'
+import * as mongoose from 'mongoose'
+import * as logger from 'morgan'
 import * as path from 'path'
+
+const MongoStore = connectMongo(session)
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
@@ -23,6 +30,16 @@ const app = express()
 app.set('port', process.env.PORT || 3000)
 app.set('views', path.join(process.cwd(), 'views'))
 app.set('view engine', 'pug')
+app.use(logger('dev'))
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: process.env.SESSION_SECRET,
+  store: new MongoStore({
+    autoReconnect: true,
+    url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
+  })
+}))
 
 /**
  * Primary app routes.

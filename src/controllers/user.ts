@@ -16,3 +16,9 @@ export let getSignUp = (req: Request, res: Response) => {
     title: 'sign up'
   })
 }
+/**
+ * sign up API
+ */
+export let postSignUp = (req: Request, res: Response) => {
+  
+}
