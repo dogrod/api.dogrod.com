@@ -1,4 +1,9 @@
 # Blog Backstage
+## Tech Stack
+- Node.js (8.x)
+- Typescript
+- MongoDb
+- Express
 
 ## TO-DO
 
