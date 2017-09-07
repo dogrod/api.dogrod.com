@@ -10,6 +10,7 @@ dotenv.config({ path: '.env' })
  * Controllers (route handlers).
  */
 import * as homeController from './controllers/home'
+import * as userController from './controllers/user'
 
 /**
  * Create Express server.
@@ -27,5 +28,7 @@ app.set('view engine', 'pug')
  * Primary app routes.
  */
 app.get('/', homeController.index)
+app.get('/login', userController.getLogin)
+app.get('/signup', userController.getSignUp)
 
 app.listen(app.get('port'))
