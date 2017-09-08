@@ -24,13 +24,18 @@ import * as userController from './controllers/user'
  */
 const app = express()
 
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI)
+mongoose.connection.on('error', () => {
+  // console.log("MongoDB connection error. Please make sure MongoDB is running.")
+  process.exit()
+})
 /**
  * Express configuration.
  */
 app.set('port', process.env.PORT || 3000)
 app.set('views', path.join(process.cwd(), 'views'))
 app.set('view engine', 'pug')
-app.use(logger('dev'))
+app.use(logger('short'))
 app.use(session({
   resave: true,
   saveUninitialized: true,
@@ -47,5 +52,9 @@ app.use(session({
 app.get('/', homeController.index)
 app.get('/login', userController.getLogin)
 app.get('/signup', userController.getSignUp)
+/**
+ * API routes
+ */
+app.post('/signup', userController.postSignUp)
 
 app.listen(app.get('port'))

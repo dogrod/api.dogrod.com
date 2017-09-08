@@ -1,5 +1,13 @@
 extends ../layout
 
 block content
-  .signup sign up page
-  
+  .signup__header
+    h3 sign up page
+  form(action="/signup", method="post")
+    p Email:
+      input(type="text", name="email")
+    p Nick Name:
+      input(type="text", name="nickname")
+    p Password:
+      input(type="password", name="password")
+    input(type="submit", value="submit")
