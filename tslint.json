@@ -53,6 +53,11 @@
       "no-trailing-whitespace": false,
       "no-unused-expression": true,
       "no-use-before-declare": true,
+      "object-literal-sort-keys": [
+          true,
+          "ignore-case",
+          "match-declaration-order"
+      ],
       "one-line": [
           true,
           "check-catch",
