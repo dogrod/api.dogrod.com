@@ -1,3 +1,4 @@
+import * as bodyParser from 'body-parser'
 import * as connectMongo from 'connect-mongo'
 import * as dotenv from 'dotenv'
 import * as express from 'express'
@@ -36,6 +37,8 @@ app.set('port', process.env.PORT || 3000)
 app.set('views', path.join(process.cwd(), 'views'))
 app.set('view engine', 'pug')
 app.use(logger('short'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
   resave: true,
   saveUninitialized: true,
@@ -55,6 +58,6 @@ app.get('/signup', userController.getSignUp)
 /**
  * API routes
  */
-app.post('/signup', userController.postSignUp)
+app.post('/api/signup', userController.postSignUp)
 
 app.listen(app.get('port'))
