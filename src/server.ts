@@ -58,6 +58,6 @@ app.get('/signup', userController.getSignUp)
 /**
  * API routes
  */
-app.post('/api/signup', userController.postSignUp)
+app.post('/api/user/signup', userController.postSignUp)
 
 app.listen(app.get('port'))

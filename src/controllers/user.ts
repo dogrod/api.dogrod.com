@@ -43,8 +43,6 @@ export let postSignUp = async (request: Request, response: Response) => {
     }
     return response.json(res)
   }
-  
-  // mark username via session
   const session = request.session
 
   try {
@@ -63,6 +61,7 @@ export let postSignUp = async (request: Request, response: Response) => {
     
     await user.save()
 
+    // mark username & email via session
     if (session) {
       session.username = reqBody.username
       session.email = reqBody.email
@@ -78,14 +77,23 @@ export let postSignUp = async (request: Request, response: Response) => {
     }
     return response.json(res)
   } catch (error) {
-    let res = JSON.parse(error.message)
-    if (!res.code) {
-      res = {
-        code: 'FAILED',
-        description: 'Internal error.',
-        result: null,
+    if (session) {
+      session.destroy((err) => {
+        if (err) {
+          logger.error(`An error occured when destroy session: ${JSON.stringify(err)}`)
+        }
+      })
+      // error handler
+      let res = JSON.parse(error.message)
+      // if res does not have 'code' property, it's a internal error
+      if (!res.code) {
+        res = {
+          code: 'FAILED',
+          description: 'Internal error.',
+          result: null,
+        }
       }
+      return response.json(res)
     }
-    return response.json(res)
   }
 }
