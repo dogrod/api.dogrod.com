@@ -1,3 +1,6 @@
+/**
+ * user related types
+ */
 declare namespace IUser {
   interface UserSignupRequest {
     name?: string,

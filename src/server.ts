@@ -17,6 +17,7 @@ dotenv.config({ path: '.env' })
 /**
  * Controllers (route handlers).
  */
+import * as blogController from './controllers/blog'
 import * as homeController from './controllers/home'
 import * as userController from './controllers/user'
 
@@ -58,6 +59,12 @@ app.get('/signup', userController.getSignUp)
 /**
  * API routes
  */
+// user
+app.get('/api/users', userController.getUserList)
 app.post('/api/user/signup', userController.postSignUp)
+
+// blog
+app.get('/api/blog/posts', blogController.getPosts)
+app.put('/api/blog/creation', blogController.putPublishArticle)
 
 app.listen(app.get('port'))

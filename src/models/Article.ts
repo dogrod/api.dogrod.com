@@ -4,7 +4,7 @@ import updateTime from '../utils/update-time'
 export type ArticleModel = mongoose.Document & {
   title: string,
   label: string[],
-  titleImage: string, // title image url
+  title_image: string, // title image url
   description: string,
   field: string,
   author: string,
@@ -16,7 +16,7 @@ export type ArticleModel = mongoose.Document & {
 const articleSchema = new mongoose.Schema({
   title: String,
   label: Array,
-  titleImage: String,
+  title_image: String,
   description: String,
   field: String,
   author: String,

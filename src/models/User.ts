@@ -9,7 +9,9 @@ export type UserModel = mongoose.Document & {
   admin: string,
   location: string,
   age: string,
-  sex: string,
+  avatar: string,
+  website: string,
+  gender: string,
   create_at: Date,
   update_at: Date,
 }
@@ -22,7 +24,9 @@ const userSchema = new mongoose.Schema({
   admin: { type: Boolean },
   location: { type: String },
   age: { type: Number },
-  sex: { type: String },
+  avatar: String,
+  website: String,
+  gender: { type: String },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
 })
