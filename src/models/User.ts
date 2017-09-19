@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose'
+import updateTime from '../utils/update-time'
 
 export type UserModel = mongoose.Document & {
   name: string,
@@ -28,17 +29,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.index({ username: 1}, { unique: true })
 
-userSchema.pre('save', function(next: (err?: mongoose.Error) => void) {
-  const currentDate = new Date()
-  
-  this.updated_at = currentDate
-
-  if (!this.created_at) {
-    this.created_at = currentDate
-  }
-
-  next()
-})
+userSchema.pre('save', updateTime)
 
 // create a model using schema
 const User = mongoose.model('User', userSchema)

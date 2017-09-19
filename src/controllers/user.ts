@@ -78,9 +78,10 @@ export let postSignUp = async (request: Request, response: Response) => {
     return response.json(res)
   } catch (error) {
     if (session) {
+      // async operation
       session.destroy((err) => {
         if (err) {
-          logger.error(`An error occured when destroy session: ${JSON.stringify(err)}`)
+          logger.error(`An error occurred when destroy session: ${JSON.stringify(err)}`)
         }
       })
       // error handler
