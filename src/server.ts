@@ -61,6 +61,7 @@ app.get('/signup', userController.getSignUp)
  */
 // user
 app.get('/api/users', userController.getUserList)
+app.post('/api/user/login', userController.postLogin)
 app.post('/api/user/signup', userController.postSignUp)
 
 // blog

@@ -2,7 +2,7 @@
  * user related types
  */
 declare namespace IUser {
-  interface UserSignupRequest {
+  interface SignupRequest {
     name?: string,
     username?: string,
     password?: string,
@@ -15,7 +15,7 @@ declare namespace IUser {
     update_at?: Date,
   }
 
-  interface UserLoginRequest {
+  interface LoginRequest {
     username?: string,
     email?: string,
     password: string,
