@@ -2,7 +2,7 @@
 ## Tech Stack
 - Node.js (8.x)
 - Typescript
-- MongoDb
+- MongoDb (Mongoose)
 - Express
 
 ## TO-DO

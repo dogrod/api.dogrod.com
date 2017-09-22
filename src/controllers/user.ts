@@ -87,8 +87,8 @@ export let postLogin = async (request: Request, response: Response) => {
       session.destroy((err) => {
         if (err) {
           logger.error(`An error occurred when destroy session: ${JSON.stringify(err)}`)
-          session.id = user._id
         }
+        session.id = user._id
       })
     } else if (session) {
       session.id = user._id
