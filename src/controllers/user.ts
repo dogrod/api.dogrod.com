@@ -80,18 +80,13 @@ export let postLogin = async (request: Request, response: Response) => {
 
     // mark username & email via session
     // if session property exists, cannot assign new field to that property because that property is read only
-    if (
-      session
-      && session.id
-    ) {
-      session.destroy((err) => {
+    if (session) {
+      session.user_id = user._id
+      session.save((err) => {
         if (err) {
-          logger.error(`An error occurred when destroy session: ${JSON.stringify(err)}`)
+          logger.error(`An error ocurred when save session: ${err}`)
         }
-        session.id = user._id
       })
-    } else if (session) {
-      session.id = user._id
     }
     
     const res: IResponse = {
@@ -101,7 +96,7 @@ export let postLogin = async (request: Request, response: Response) => {
     }
     return response.json(res)
   } catch (error) {
-    logger.error(`An error occurred when log in: ${JSON.stringify(error)}`)
+    logger.error(`An error occurred when log in: ${error}`)
     // error handler
     let res = JSON.parse(error.message)
     // if res does not have 'code' property, it's a internal error
@@ -181,18 +176,13 @@ export let postSignUp = async (request: Request, response: Response) => {
 
     // mark username & email via session
     // if session property exists, cannot assign new field to that property because that property is read only
-    if (
-      session
-      && session.id
-    ) {
-      session.destroy((err) => {
+    if (session) {
+      session.user_id = user._id
+      session.save((err) => {
         if (err) {
-          logger.error(`An error occurred when destroy session: ${JSON.stringify(err)}`)
-          session.id = newUser._id
+          logger.error(`An error ocurred when save session: ${err}`)
         }
       })
-    } else if (session) {
-      session.id = newUser._id
     }
 
     const res: IResponse = {
@@ -211,7 +201,7 @@ export let postSignUp = async (request: Request, response: Response) => {
       // async operation
       session.destroy((err) => {
         if (err) {
-          logger.error(`An error occurred when destroy session: ${JSON.stringify(err)}`)
+          logger.error(`An error occurred when destroy session: ${err}`)
         }
       })
     }
@@ -243,7 +233,7 @@ export let getUserList = async (request: Request, response: Response) => {
 
     return response.json(res)
   } catch (error) {
-    logger.error(`An error occurred when get user list: ${JSON.stringify(error)}`)
+    logger.error(`An error occurred when get user list: ${error}`)
     const res: IResponse = {
       code: 'FAILED',
       description: 'Internal error.',
